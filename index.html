@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flash USDT — Buy Flash USDT TRC20 & ERC20</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root {
+    --bg: #080d0c;
+    --surface: #0e1614;
+    --surface2: #131e1b;
+    --surface3: #182420;
+    --border: #1c2e2a;
+    --border2: #243d38;
+    --accent: #00d68f;
+    --accent-dim: #00784f;
+    --accent-glow: rgba(0, 214, 143, 0.1);
+    --accent-glow2: rgba(0, 214, 143, 0.06);
+    --text: #d4ede6;
+    --text-muted: #5a8070;
+    --text-dim: #3d6055;
+    --white: #f0faf6;
+    --tron-color: #e84040;
+    --eth-color: #627eea;
+    --btc-color: #f7931a;
+    --bnb-color: #f0b90b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Subtle grid */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,214,143,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,214,143,0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none; z-index: 0;
+  }
+  /* Top glow */
+  body::after {
+    content: ''; position: fixed; top: -300px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 500px;
+    background: radial-gradient(ellipse, rgba(0,214,143,0.07) 0%, transparent 65%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .wrapper { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding: 0 0 100px; }
+
+  /* ── Header ── */
+  header {
+    padding: 22px 24px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(8,13,12,0.92);
+    backdrop-filter: blur(14px);
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700; font-size: 14px;
+    color: var(--white);
+    letter-spacing: -0.2px;
+  }
+  .logo-icon {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, rgba(0,214,143,0.2), rgba(0,214,143,0.06));
+    border: 1px solid var(--accent-dim);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .live-badge {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(0,214,143,0.08);
+    border: 1px solid rgba(0,214,143,0.2);
+    color: var(--accent);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 5px 10px; border-radius: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+  }
+  .live-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse-dot 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 32px 24px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 600;
+    color: var(--accent); letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .hero h1 {
+    font-size: 30px; font-weight: 800; line-height: 1.1;
+    color: var(--white); margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 .hl { color: var(--accent); }
+  .hero p { font-size: 14px; color: var(--text-muted); line-height: 1.65; font-weight: 400; }
+
+  .stats-row { display: flex; gap: 10px; margin-top: 22px; }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px; flex: 1;
+    transition: border-color 0.2s;
+  }
+  .stat:hover { border-color: var(--border2); }
+  .stat-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 17px; font-weight: 700;
+    color: var(--accent); line-height: 1;
+  }
+  .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; }
+
+  /* ── Sections ── */
+  .section { padding: 28px 24px 0; }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .section-icon {
+    width: 26px; height: 26px;
+    background: var(--accent-glow2);
+    border: 1px solid var(--border2);
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+  }
+
+  /* ── Amount Grid ── */
+  .amount-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .amount-card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 16px;
+    cursor: pointer; position: relative;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s, box-shadow 0.2s;
+    user-select: none;
+  }
+  .amount-card:hover {
+    border-color: var(--border2);
+    background: var(--surface2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .amount-card.selected {
+    border-color: var(--accent);
+    background: linear-gradient(145deg, rgba(0,214,143,0.07) 0%, var(--surface) 100%);
+    box-shadow: 0 0 0 1px rgba(0,214,143,0.2), 0 8px 24px rgba(0,214,143,0.06);
+  }
+  .check-mark {
+    position: absolute; top: 12px; right: 12px;
+    width: 22px; height: 22px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: none; align-items: center; justify-content: center;
+    color: #000; font-size: 11px;
+  }
+  .amount-card.selected .check-mark { display: flex; }
+  .amount-main { display: flex; align-items: baseline; gap: 5px; margin-bottom: 8px; }
+  .amount-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 28px; font-weight: 700;
+    color: var(--white); line-height: 1;
+  }
+  .amount-unit { font-size: 10px; font-weight: 700; color: var(--accent); letter-spacing: 0.5px; text-transform: uppercase; }
+  .amount-price { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
+  .amount-price strong { color: var(--accent); font-family: 'IBM Plex Mono', monospace; }
+  .amount-desc { font-size: 11px; color: var(--text-dim); font-weight: 500; }
+  .amount-badge {
+    display: inline-block;
+    background: rgba(0,214,143,0.1);
+    border: 1px solid rgba(0,214,143,0.2);
+    color: var(--accent);
+    font-size: 9px; font-weight: 700;
+    padding: 2px 7px; border-radius: 4px;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    margin-top: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* ── Network Tabs ── */
+  .network-tabs { display: flex; gap: 10px; }
+  .net-tab {
+    flex: 1; padding: 16px 12px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    cursor: pointer; text-align: center;
+    transition: all 0.2s; user-select: none;
+    position: relative; overflow: hidden;
+  }
+  .net-tab:hover { border-color: var(--border2); background: var(--surface2); }
+  .net-tab.selected {
+    border-color: var(--accent);
+    background: linear-gradient(145deg, rgba(0,214,143,0.08), var(--surface));
+  }
+  .net-tab-icon { display: flex; justify-content: center; margin-bottom: 8px; }
+  .net-tab-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px; font-weight: 700;
+    color: var(--white); margin-bottom: 3px;
+  }
+  .net-chain { font-size: 11px; color: var(--text-muted); font-weight: 400; }
+  .net-badge {
+    display: inline-block; margin-top: 7px;
+    font-size: 10px; padding: 2px 8px;
+    border-radius: 4px; font-weight: 700;
+    letter-spacing: 0.3px; font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+  }
+  .net-tab:nth-child(1) .net-badge { background: rgba(232,64,64,0.12); color: #e84040; }
+  .net-tab:nth-child(2) .net-badge { background: rgba(98,126,234,0.12); color: #627eea; }
+
+  /* ── Dropdown ── */
+  .dropdown-wrap { position: relative; }
+  .dropdown-trigger {
+    width: 100%;
+    background: var(--surface);
+    border: 1.5px solid var(--border2);
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer;
+    font-size: 14px; font-weight: 600;
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .dropdown-trigger:hover { background: var(--surface2); border-color: var(--accent-dim); }
+  .dropdown-trigger.open { border-color: var(--accent); border-radius: 14px 14px 0 0; }
+  .chevron { width: 18px; height: 18px; color: var(--accent); transition: transform 0.25s; flex-shrink: 0; }
+  .dropdown-trigger.open .chevron { transform: rotate(180deg); }
+  .dropdown-list {
+    display: none;
+    background: var(--surface);
+    border: 1.5px solid var(--accent);
+    border-top: none;
+    border-radius: 0 0 14px 14px;
+    overflow: hidden; margin-top: -2px;
+  }
+  .dropdown-list.open { display: block; }
+  .dur-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px;
+    cursor: pointer; font-size: 14px; font-weight: 500;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .dur-item:last-child { border-bottom: none; }
+  .dur-item:hover { background: var(--surface2); }
+  .dur-item.selected { color: var(--accent); font-weight: 600; }
+  .dur-item-left { display: flex; align-items: center; gap: 10px; }
+  .dur-icon { width: 16px; height: 16px; color: var(--accent); opacity: 0.6; }
+  .dur-check { width: 16px; height: 16px; color: var(--accent); }
+
+  /* ── Wallet Input ── */
+  .input-wrap { position: relative; }
+  .wallet-input {
+    width: 100%;
+    background: var(--surface);
+    border: 1.5px solid var(--border2);
+    border-radius: 14px;
+    padding: 16px 70px 16px 18px;
+    font-size: 12.5px;
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    outline: none;
+    transition: border-color 0.2s;
+    letter-spacing: 0.2px;
+  }
+  .wallet-input::placeholder { color: var(--text-dim); }
+  .wallet-input:focus { border-color: var(--accent); }
+  .paste-btn {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    background: var(--accent-glow);
+    border: 1px solid var(--accent-dim);
+    color: var(--accent);
+    font-size: 10px; font-weight: 700;
+    padding: 6px 10px; border-radius: 8px;
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+  }
+  .paste-btn:hover { background: rgba(0,214,143,0.2); }
+
+  /* ── Summary ── */
+  .summary-card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 8px;
+  }
+  .summary-row {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .summary-row:last-child { border-bottom: none; }
+  .summary-row .label { color: var(--text-muted); font-weight: 400; }
+  .summary-row .val { font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: var(--text); }
+  .summary-row.total { margin-top: 4px; }
+  .summary-row.total .label { font-weight: 700; color: var(--text); font-size: 14px; }
+  .summary-row.total .val { color: var(--accent); font-size: 16px; font-weight: 700; }
+  .savings-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(0,214,143,0.08);
+    border: 1px solid rgba(0,214,143,0.2);
+    color: var(--accent);
+    font-size: 12px; font-weight: 600;
+    padding: 8px 14px; border-radius: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    margin-top: 16px; width: 100%; justify-content: center;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── CTA ── */
+  .cta-btn {
+    width: 100%; padding: 18px;
+    background: var(--accent);
+    color: #040f0b;
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px; font-weight: 800;
+    border: none; border-radius: 14px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    position: relative; overflow: hidden;
+    margin-top: 20px;
+    transition: all 0.2s;
+    letter-spacing: 0.2px;
+  }
+  .cta-btn::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transform: translateX(-100%); transition: transform 0.6s;
+  }
+  .cta-btn:hover::before { transform: translateX(100%); }
+  .cta-btn:hover {
+    background: #00c882;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 34px rgba(0,214,143,0.3);
+  }
+  .cta-icon { width: 20px; height: 20px; }
+
+  /* ── Trust Row ── */
+  .trust-row { display: flex; gap: 8px; margin-top: 14px; }
+  .trust-item {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 6px;
+    text-align: center;
+    font-size: 10.5px;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+  .trust-icon { margin-bottom: 5px; display: flex; justify-content: center; color: var(--text-dim); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85); z-index: 100;
+    align-items: flex-end; justify-content: center;
+    backdrop-filter: blur(8px);
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface);
+    border: 1.5px solid var(--border2);
+    border-radius: 24px 24px 0 0;
+    padding: 28px 24px 50px;
+    width: 100%; max-width: 480px;
+    animation: slideUp 0.32s cubic-bezier(0.34,1.4,0.64,1);
+    max-height: 94vh; overflow-y: auto;
+  }
+  @keyframes slideUp { from { transform: translateY(100%); opacity: 0.5; } to { transform: translateY(0); opacity: 1; } }
+  .modal-handle { width: 36px; height: 4px; background: var(--border2); border-radius: 4px; margin: 0 auto 24px; }
+  .modal-step { display: none; }
+  .modal-step.active { display: block; }
+
+  /* Step 1 */
+  .pay-method-title { font-size: 20px; font-weight: 800; color: var(--white); margin-bottom: 4px; letter-spacing: -0.3px; }
+  .pay-method-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 22px; }
+  .amount-due {
+    background: linear-gradient(135deg, rgba(0,214,143,0.07), rgba(0,214,143,0.03));
+    border: 1px solid rgba(0,214,143,0.2);
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 22px;
+  }
+  .amount-due-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 5px; font-family: 'IBM Plex Mono', monospace; }
+  .amount-due-val { font-family: 'IBM Plex Mono', monospace; font-size: 24px; font-weight: 700; color: var(--accent); }
+  .pay-methods { display: flex; flex-direction: column; gap: 9px; }
+
+  .pay-method-btn {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    border-radius: 14px; padding: 14px 16px;
+    cursor: pointer; transition: all 0.2s; user-select: none;
+  }
+  .pay-method-btn:hover {
+    border-color: var(--border2);
+    background: var(--surface3);
+    transform: translateX(3px);
+  }
+  .pay-method-ico {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .ico-trc { background: rgba(232,64,64,0.1); }
+  .ico-erc { background: rgba(98,126,234,0.1); }
+  .ico-btc { background: rgba(247,147,26,0.1); }
+  .ico-bep { background: rgba(240,185,11,0.1); }
+  .pay-method-info { flex: 1; }
+  .pay-method-name { font-size: 14px; font-weight: 700; color: var(--white); }
+  .pay-method-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; font-weight: 400; }
+  .pay-method-arrow { color: var(--text-dim); font-size: 18px; font-weight: 300; }
+  .modal-cancel {
+    width: 100%; padding: 14px; margin-top: 14px;
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--text-muted);
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px; font-weight: 600;
+    border-radius: 12px; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .modal-cancel:hover { border-color: var(--border2); color: var(--text); }
+
+  /* Step 2 */
+  .pay-back {
+    display: flex; align-items: center; gap: 5px;
+    color: var(--text-muted); font-size: 13px; font-weight: 600;
+    cursor: pointer; margin-bottom: 22px;
+    background: none; border: none;
+    font-family: 'Outfit', sans-serif; padding: 0;
+    transition: color 0.2s;
+  }
+  .pay-back:hover { color: var(--accent); }
+  .pay-addr-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .pay-addr-ico {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .pay-addr-name { font-size: 20px; font-weight: 800; color: var(--white); }
+  .pay-addr-sub { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
+
+  .pay-exact-amount {
+    background: var(--surface2);
+    border: 1.5px solid var(--accent);
+    border-radius: 14px; padding: 14px 18px;
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px;
+  }
+  .pay-exact-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 5px; font-family: 'IBM Plex Mono', monospace; }
+  .pay-exact-val { font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 700; color: var(--accent); }
+
+  .qr-wrap {
+    background: #fff; border-radius: 16px; padding: 14px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px; width: fit-content;
+    box-shadow: 0 0 0 4px rgba(0,214,143,0.15);
+  }
+  #qrCode canvas, #qrCode img { display: block; }
+
+  .addr-box {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 12px; padding: 14px 16px; margin-bottom: 10px;
+  }
+  .addr-box-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; font-family: 'IBM Plex Mono', monospace; }
+  .addr-box-val { font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--text); word-break: break-all; line-height: 1.8; }
+  .copy-btn {
+    width: 100%; padding: 14px;
+    background: var(--accent-glow);
+    border: 1px solid var(--accent-dim);
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px; font-weight: 700;
+    border-radius: 10px; cursor: pointer;
+    transition: all 0.2s; margin-bottom: 16px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .copy-btn:hover { background: rgba(0,214,143,0.18); }
+  .copy-btn.copied { background: var(--accent); color: #040f0b; border-color: var(--accent); }
+
+  .pay-instructions {
+    background: rgba(0,214,143,0.03);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--accent-dim);
+    border-radius: 10px; padding: 14px 16px; margin-bottom: 18px;
+  }
+  .pay-instructions p { font-size: 13px; color: var(--text-muted); line-height: 1.9; }
+  .pay-instructions strong { color: var(--accent); font-weight: 600; }
+
+  .confirm-btn {
+    width: 100%; padding: 17px;
+    background: var(--accent); color: #040f0b;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px; font-weight: 800;
+    border: none; border-radius: 12px; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .confirm-btn:hover { background: #00c882; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,214,143,0.25); }
+
+  /* Step 3 */
+  .success-wrap { text-align: center; padding: 10px 0; }
+  .success-ico-wrap {
+    width: 80px; height: 80px;
+    background: rgba(0,214,143,0.1);
+    border: 1.5px solid rgba(0,214,143,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    animation: pop-in 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes pop-in { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .success-title { font-size: 24px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+  .success-sub { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; }
+  .success-detail {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px;
+    margin-bottom: 24px; text-align: left;
+  }
+  .success-row {
+    display: flex; justify-content: space-between;
+    font-size: 13px; padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .success-row:last-child { border-bottom: none; }
+  .success-row span:first-child { color: var(--text-muted); }
+  .success-row span:last-child { font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: var(--text); max-width: 170px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .done-btn {
+    width: 100%; padding: 15px;
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px; font-weight: 700;
+    border-radius: 12px; cursor: pointer; transition: all 0.2s;
+  }
+  .done-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
+
+  @keyframes ripple { from { transform: scale(0); opacity: 0.5; } to { transform: scale(2.5); opacity: 0; } }
+  .ripple-effect { position: absolute; border-radius: 50%; background: rgba(0,214,143,0.35); width: 100px; height: 100px; margin-top: -50px; margin-left: -50px; animation: ripple 0.65s linear; pointer-events: none; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <!-- USDT Tether icon -->
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="16" fill="#26A17B"/>
+          <path d="M17.922 17.383v-.002c-.11.008-.677.042-1.942.042-1.01 0-1.721-.03-1.971-.042v.003c-3.888-.171-6.79-.848-6.79-1.658 0-.809 2.902-1.486 6.79-1.66v2.644c.254.018.982.061 1.988.061 1.207 0 1.812-.05 1.925-.061v-2.643c3.88.173 6.775.85 6.775 1.659 0 .808-2.895 1.485-6.775 1.657m0-3.59v-2.366h5.414V8.719H8.595v2.708h5.414v2.365c-4.4.202-7.709 1.074-7.709 2.126 0 1.051 3.309 1.923 7.709 2.125v7.608h3.913v-7.611c4.393-.202 7.694-1.073 7.694-2.122 0-1.05-3.301-1.921-7.694-2.125" fill="white"/>
+        </svg>
+      </div>
+      Flash USDT TRC20 and ERC20
+    </div>
+    <div class="live-badge"><div class="live-dot"></div>Live</div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-eyebrow">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" fill="currentColor" opacity="0.5"/><circle cx="5" cy="5" r="2" fill="currentColor"/></svg>
+      Subsidized Rates
+    </div>
+    <h1>Buy <span class="hl">Flash USDT</span><br>TRC20 &amp; ERC20</h1>
+    <p>Pay significantly below market rate. Instant delivery to any wallet — no KYC required.</p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-val">~40%</div><div class="stat-label">Below Market</div></div>
+      <div class="stat"><div class="stat-val">&lt;5min</div><div class="stat-label">Avg Delivery</div></div>
+      <div class="stat"><div class="stat-val">24/7</div><div class="stat-label">Support</div></div>
+    </div>
+  </div>
+
+  <!-- Amount -->
+  <div class="section">
+    <div class="section-title">
+      <div class="section-icon">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      </div>
+      Select Amount
+    </div>
+    <div class="amount-grid">
+      <div class="amount-card selected" data-amount="50000" data-price="50" onclick="selectAmount(this)">
+        <div class="check-mark">✓</div>
+        <div class="amount-main"><span class="amount-num">50K</span><span class="amount-unit">USDT</span></div>
+        <div class="amount-price">Pay <strong>$50</strong></div>
+        <div class="amount-desc">Good for testing</div>
+        <div class="amount-badge">99.9% off</div>
+      </div>
+      <div class="amount-card" data-amount="100000" data-price="380" onclick="selectAmount(this)">
+        <div class="check-mark">✓</div>
+        <div class="amount-main"><span class="amount-num">100K</span><span class="amount-unit">USDT</span></div>
+        <div class="amount-price">Pay <strong>$380</strong></div>
+        <div class="amount-desc">Best for demos</div>
+        <div class="amount-badge">99.9% off</div>
+      </div>
+      <div class="amount-card" data-amount="500000" data-price="690" onclick="selectAmount(this)">
+        <div class="check-mark">✓</div>
+        <div class="amount-main"><span class="amount-num">500K</span><span class="amount-unit">USDT</span></div>
+        <div class="amount-price">Pay <strong>$690</strong></div>
+        <div class="amount-desc">For serious proofs</div>
+        <div class="amount-badge">99.9% off</div>
+      </div>
+      <div class="amount-card" data-amount="1000000" data-price="1010" onclick="selectAmount(this)">
+        <div class="check-mark">✓</div>
+        <div class="amount-main"><span class="amount-num">1M</span><span class="amount-unit">USDT</span></div>
+        <div class="amount-price">Pay <strong>$1010</strong></div>
+        <div class="amount-desc">Maximum impact</div>
+        <div class="amount-badge">99.9% off</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Network -->
+  <div class="section" style="margin-top:28px;">
+    <div class="section-title">
+      <div class="section-icon">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="6" height="10"/><rect x="9" y="2" width="6" height="20"/><rect x="16" y="10" width="6" height="7"/></svg>
+      </div>
+      Receive Network
+    </div>
+    <div class="network-tabs">
+      <!-- TRC20 tab -->
+      <div class="net-tab selected" onclick="selectNetwork(this,'TRC20')">
+        <div class="net-tab-icon">
+          <!-- TRON logo SVG -->
+          <svg width="28" height="28" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="16" fill="#e84040"/>
+            <path d="M23.2 10.4L9.6 8l7.2 14.4 6.4-12zM17.2 20.4l-5.6-11.2 11.2 1.6-5.6 9.6z" fill="white" opacity="0.9"/>
+            <path d="M11.6 9.2l5.6 11.2-2.4 1.6-3.2-12.8z" fill="white" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="net-tab-name">TRC20</div>
+        <div class="net-chain">TRON Network</div>
+        <div class="net-badge">Low Fees</div>
+      </div>
+      <!-- ERC20 tab -->
+      <div class="net-tab" onclick="selectNetwork(this,'ERC20')">
+        <div class="net-tab-icon">
+          <!-- ETH logo SVG -->
+          <svg width="28" height="28" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="16" fill="#627eea"/>
+            <path d="M16 6v8.16l6.88 3.08L16 6z" fill="white" opacity="0.6"/>
+            <path d="M16 6L9.12 17.24 16 14.16V6z" fill="white"/>
+            <path d="M16 21.6v4.38l6.88-9.5L16 21.6z" fill="white" opacity="0.6"/>
+            <path d="M16 26v-4.4l-6.88-5.12L16 26z" fill="white"/>
+            <path d="M16 20.42l6.88-4.06-6.88-3.12v7.18z" fill="white" opacity="0.2"/>
+            <path d="M9.12 16.36L16 20.42v-7.18l-6.88 3.12z" fill="white" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="net-tab-name">ERC20</div>
+        <div class="net-chain">Ethereum Network</div>
+        <div class="net-badge">EVM</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Duration -->
+  <div class="section" style="margin-top:28px;">
+    <div class="section-title">
+      <div class="section-icon">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      Visibility Duration
+    </div>
+    <div class="dropdown-wrap">
+      <div class="dropdown-trigger" id="durationTrigger" onclick="toggleDropdown()">
+        <span id="durationLabel">24 Hours</span>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+      </div>
+      <div class="dropdown-list" id="durationList">
+        <div class="dur-item" data-dur="1 Hour" onclick="selectDuration(this)"><div class="dur-item-left"><svg class="dur-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 Hour</div></div>
+        <div class="dur-item" data-dur="6 Hours" onclick="selectDuration(this)"><div class="dur-item-left"><svg class="dur-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>6 Hours</div></div>
+        <div class="dur-item" data-dur="12 Hours" onclick="selectDuration(this)"><div class="dur-item-left"><svg class="dur-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>12 Hours</div></div>
+        <div class="dur-item selected" data-dur="24 Hours" onclick="selectDuration(this)"><div class="dur-item-left"><svg class="dur-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>24 Hours</div><svg class="dur-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="dur-item" data-dur="3 Days" onclick="selectDuration(this)"><div class="dur-item-left"><svg class="dur-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 Days</div></div>
+        <div class="dur-item" data-dur="7 Days" onclick="selectDuration(this)"><div class="dur-item-left"><svg class="dur-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>7 Days</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wallet -->
+  <div class="section" style="margin-top:28px;">
+    <div class="section-title">
+      <div class="section-icon">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+      </div>
+      Receiving Wallet
+    </div>
+    <div class="input-wrap">
+      <input class="wallet-input" id="walletInput" type="text" placeholder="Paste your TRC20 / ERC20 wallet address" autocomplete="off" spellcheck="false"/>
+      <button class="paste-btn" onclick="pasteWallet()">PASTE</button>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="section" style="margin-top:28px;">
+    <div class="section-title">
+      <div class="section-icon">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      Order Summary
+    </div>
+    <div class="summary-card">
+      <div class="summary-row"><span class="label">USDT Amount</span><span class="val" id="sumAmount">50K USDT</span></div>
+      <div class="summary-row"><span class="label">Network</span><span class="val" id="sumNetwork">TRC20</span></div>
+      <div class="summary-row"><span class="label">Duration</span><span class="val" id="sumDuration">24 Hours</span></div>
+      <div class="summary-row"><span class="label">Market Value</span><span class="val" id="sumMarket">$50,000</span></div>
+      <div class="summary-row total"><span class="label">You Pay</span><span class="val" id="sumTotal">$50</span></div>
+      <div class="savings-pill" id="sumSavings">✦ You save $49,950 (99.9%)</div>
+    </div>
+    <button class="cta-btn" onclick="placeOrder(event)">
+      <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      Proceed to Payment
+    </button>
+    <div class="trust-row">
+      <div class="trust-item">
+        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        Encrypted
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        Instant
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+        Worldwide
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        24/7 Help
+      </div>
+    </div>
+  </div>
+
+</div><!-- /wrapper -->
+
+<!-- ═══ PAYMENT MODAL ═══ -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-handle"></div>
+
+    <!-- Step 1: Choose method -->
+    <div class="modal-step active" id="stepMethod">
+      <div class="pay-method-title">Choose Payment Method</div>
+      <div class="pay-method-sub">Select how you want to pay for your order</div>
+      <div class="amount-due">
+        <div>
+          <div class="amount-due-label">Amount Due</div>
+          <div class="amount-due-val" id="amountDue">$50</div>
+        </div>
+        <div style="text-align:right">
+          <div class="amount-due-label">You Receive</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;color:var(--white)" id="youReceive">50K USDT TRC20</div>
+        </div>
+      </div>
+      <div class="pay-methods">
+        <!-- USDT TRC20 -->
+        <div class="pay-method-btn" onclick="goToAddress('trc20')">
+          <div class="pay-method-ico ico-trc">
+            <!-- TRON SVG -->
+            <svg width="26" height="26" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="16" fill="#e84040"/>
+              <path d="M23.2 10.4L9.6 8l7.2 14.4 6.4-12zM17.2 20.4l-5.6-11.2 11.2 1.6-5.6 9.6z" fill="white" opacity="0.9"/>
+              <path d="M11.6 9.2l5.6 11.2-2.4 1.6-3.2-12.8z" fill="white" opacity="0.6"/>
+            </svg>
+          </div>
+          <div class="pay-method-info">
+            <div class="pay-method-name">USDT TRC20</div>
+            <div class="pay-method-desc">TRON Network · Lowest fees</div>
+          </div>
+          <div class="pay-method-arrow">›</div>
+        </div>
+        <!-- USDT ERC20 -->
+        <div class="pay-method-btn" onclick="goToAddress('erc20')">
+          <div class="pay-method-ico ico-erc">
+            <!-- ETH SVG -->
+            <svg width="26" height="26" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="16" fill="#627eea"/>
+              <path d="M16 6v8.16l6.88 3.08L16 6z" fill="white" opacity="0.6"/>
+              <path d="M16 6L9.12 17.24 16 14.16V6z" fill="white"/>
+              <path d="M16 21.6v4.38l6.88-9.5L16 21.6z" fill="white" opacity="0.6"/>
+              <path d="M16 26v-4.4l-6.88-5.12L16 26z" fill="white"/>
+              <path d="M16 20.42l6.88-4.06-6.88-3.12v7.18z" fill="white" opacity="0.2"/>
+              <path d="M9.12 16.36L16 20.42v-7.18l-6.88 3.12z" fill="white" opacity="0.6"/>
+            </svg>
+          </div>
+          <div class="pay-method-info">
+            <div class="pay-method-name">USDT ERC20</div>
+            <div class="pay-method-desc">Ethereum Network · EVM compatible</div>
+          </div>
+          <div class="pay-method-arrow">›</div>
+        </div>
+        <!-- Bitcoin -->
+        <div class="pay-method-btn" onclick="goToAddress('btc')">
+          <div class="pay-method-ico ico-btc">
+            <!-- BTC SVG -->
+            <svg width="26" height="26" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="16" fill="#f7931a"/>
+              <path d="M22.57 14.27c.3-2.03-1.24-3.12-3.36-3.85l.69-2.74-1.67-.42-.67 2.67c-.44-.11-.89-.21-1.34-.31l.67-2.69-1.67-.42-.69 2.74c-.36-.08-.72-.17-1.07-.25v-.01l-2.3-.57-.44 1.79s1.24.28 1.22.3c.68.17.8.62.78 .97l-.78 3.14c.05.01.11.03.17.06l-.17-.04-1.1 4.38c-.08.21-.29.52-.76.4.02.03-1.22-.31-1.22-.31l-.83 1.91 2.17.54c.4.1.8.21 1.19.31l-.69 2.77 1.67.42.69-2.74c.46.12.9.24 1.34.34l-.68 2.73 1.67.42.69-2.77c2.84.54 4.98.32 5.88-2.25.73-2.06-.04-3.25-1.52-4.02 1.08-.25 1.89-.96 2.1-2.42zm-3.75 5.27c-.52 2.06-4.02.95-5.15.67l.92-3.67c1.14.28 4.77.84 4.23 3zm.52-5.3c-.47 1.88-3.38.92-4.33.69l.83-3.33c.95.24 4.01.67 3.5 2.64z" fill="white"/>
+            </svg>
+          </div>
+          <div class="pay-method-info">
+            <div class="pay-method-name">Bitcoin (BTC)</div>
+            <div class="pay-method-desc">Bitcoin Network</div>
+          </div>
+          <div class="pay-method-arrow">›</div>
+        </div>
+        <!-- BEP20 -->
+        <div class="pay-method-btn" onclick="goToAddress('bep20')">
+          <div class="pay-method-ico ico-bep">
+            <!-- BNB SVG -->
+            <svg width="26" height="26" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="16" fill="#f0b90b"/>
+              <path d="M12.116 13.404L16 9.52l3.886 3.886 2.26-2.26L16 5l-6.144 6.144 2.26 2.26zM5 16l2.26-2.26L9.52 16l-2.26 2.26L5 16zm7.116 2.596L16 22.48l3.886-3.886 2.261 2.259L16 27 9.856 20.856l-.001-.001 2.261-2.259zM22.48 16l2.26-2.26L27 16l-2.26 2.26L22.48 16zm-3.918-.002h.002L16 13.396l-1.896 1.898-.218.218-.449.449-.002.002v.001l.002.001L16 18.604l2.564-2.563.001-.002-.003-.041z" fill="#040404"/>
+            </svg>
+          </div>
+          <div class="pay-method-info">
+            <div class="pay-method-name">USDT BEP20</div>
+            <div class="pay-method-desc">BNB Smart Chain</div>
+          </div>
+          <div class="pay-method-arrow">›</div>
+        </div>
+      </div>
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+    </div>
+
+    <!-- Step 2: Address + QR -->
+    <div class="modal-step" id="stepAddress">
+      <button class="pay-back" onclick="backToMethods()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to methods
+      </button>
+      <div class="pay-addr-header">
+        <div class="pay-addr-ico" id="addrIco"></div>
+        <div><div class="pay-addr-name" id="addrName"></div><div class="pay-addr-sub" id="addrSub"></div></div>
+      </div>
+      <div class="pay-exact-amount">
+        <div>
+          <div class="pay-exact-label">Exact Amount to Send</div>
+          <div class="pay-exact-val" id="exactAmount">$50 USD</div>
+        </div>
+        <div style="font-size:11px;color:var(--text-muted);text-align:right;font-family:'IBM Plex Mono',monospace">Send <strong style="color:var(--accent)">exactly</strong><br>this amount</div>
+      </div>
+      <div style="text-align:center">
+        <div class="qr-wrap"><div id="qrCode"></div></div>
+      </div>
+      <div class="addr-box">
+        <div class="addr-box-label">Payment Address</div>
+        <div class="addr-box-val" id="addrVal"></div>
+      </div>
+      <button class="copy-btn" id="copyBtn" onclick="copyAddress()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy Address
+      </button>
+      <div class="pay-instructions">
+        <p>
+          1. Send <strong id="instrAmt">$50</strong> worth to the address above.<br>
+          2. Use <strong id="instrNet">TRC20</strong> network only — wrong network = lost funds.<br>
+          3. Tap <strong>I've Sent Payment</strong> once your transaction is confirmed.<br>
+          4. USDT delivered to your wallet within <strong>5–15 minutes</strong>.
+        </p>
+      </div>
+      <button class="confirm-btn" onclick="goToSuccess()">
+        I've Sent Payment
+      </button>
+    </div>
+
+    <!-- Step 3: Confirmation -->
+    <div class="modal-step" id="stepSuccess">
+      <div class="success-wrap">
+        <div class="success-ico-wrap">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="success-title">Checking Payment</div>
+        <div class="success-sub">We've logged your payment. Your USDT will be sent to your wallet within 5–15 minutes. Keep this page open.</div>
+        <div class="success-detail" id="successDetail"></div>
+        <button class="done-btn" onclick="closeModal()">Close &amp; New Order</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // SVG icons for payment methods in modal
+  const ICONS = {
+    trc20: `<svg width="30" height="30" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16" fill="#e84040"/><path d="M23.2 10.4L9.6 8l7.2 14.4 6.4-12zM17.2 20.4l-5.6-11.2 11.2 1.6-5.6 9.6z" fill="white" opacity="0.9"/><path d="M11.6 9.2l5.6 11.2-2.4 1.6-3.2-12.8z" fill="white" opacity="0.6"/></svg>`,
+    erc20: `<svg width="30" height="30" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16" fill="#627eea"/><path d="M16 6v8.16l6.88 3.08L16 6z" fill="white" opacity="0.6"/><path d="M16 6L9.12 17.24 16 14.16V6z" fill="white"/><path d="M16 21.6v4.38l6.88-9.5L16 21.6z" fill="white" opacity="0.6"/><path d="M16 26v-4.4l-6.88-5.12L16 26z" fill="white"/><path d="M16 20.42l6.88-4.06-6.88-3.12v7.18z" fill="white" opacity="0.2"/><path d="M9.12 16.36L16 20.42v-7.18l-6.88 3.12z" fill="white" opacity="0.6"/></svg>`,
+    btc:   `<svg width="30" height="30" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16" fill="#f7931a"/><path d="M22.57 14.27c.3-2.03-1.24-3.12-3.36-3.85l.69-2.74-1.67-.42-.67 2.67c-.44-.11-.89-.21-1.34-.31l.67-2.69-1.67-.42-.69 2.74c-.36-.08-.72-.17-1.07-.25v-.01l-2.3-.57-.44 1.79s1.24.28 1.22.3c.68.17.8.62.78.97l-.78 3.14c.05.01.11.03.17.06l-.17-.04-1.1 4.38c-.08.21-.29.52-.76.4.02.03-1.22-.31-1.22-.31l-.83 1.91 2.17.54c.4.1.8.21 1.19.31l-.69 2.77 1.67.42.69-2.74c.46.12.9.24 1.34.34l-.68 2.73 1.67.42.69-2.77c2.84.54 4.98.32 5.88-2.25.73-2.06-.04-3.25-1.52-4.02 1.08-.25 1.89-.96 2.1-2.42zm-3.75 5.27c-.52 2.06-4.02.95-5.15.67l.92-3.67c1.14.28 4.77.84 4.23 3zm.52-5.3c-.47 1.88-3.38.92-4.33.69l.83-3.33c.95.24 4.01.67 3.5 2.64z" fill="white"/></svg>`,
+    bep20: `<svg width="30" height="30" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16" fill="#f0b90b"/><path d="M12.116 13.404L16 9.52l3.886 3.886 2.26-2.26L16 5l-6.144 6.144 2.26 2.26zM5 16l2.26-2.26L9.52 16l-2.26 2.26L5 16zm7.116 2.596L16 22.48l3.886-3.886 2.261 2.259L16 27 9.856 20.856l-.001-.001 2.261-2.259zM22.48 16l2.26-2.26L27 16l-2.26 2.26L22.48 16zm-3.918-.002h.002L16 13.396l-1.896 1.898-.218.218-.449.449-.002.002v.001l.002.001L16 18.604l2.564-2.563.001-.002-.003-.041z" fill="#040404"/></svg>`
+  };
+
+  const ICO_BG = { trc20:'ico-trc', erc20:'ico-erc', btc:'ico-btc', bep20:'ico-bep' };
+
+  const ADDRESSES = {
+    trc20: { name:'USDT TRC20', sub:'TRON Network', address:'TJ3e3xshR6efSUp7uJPrHK8BNDSUmWohQG', network:'TRC20 (TRON)' },
+    erc20: { name:'USDT ERC20', sub:'Ethereum Network', address:'0xd8670dc3f992d35b689bd26286c716c57f51ed45', network:'ERC20 (Ethereum)' },
+    btc:   { name:'Bitcoin (BTC)', sub:'Bitcoin Network', address:'bc1qf5cj0l42h8qavt9x2ghge4j8ryh8aautknxe7j', network:'Bitcoin' },
+    bep20: { name:'USDT BEP20', sub:'BNB Smart Chain', address:'0xd8670dc3f992d35b689bd26286c716c57f51ed45', network:'BEP20 (BSC)' }
+  };
+
+  let sel = { amount:50000, price:50, network:'TRC20', duration:'24 Hours' };
+  let curMethod = null;
+
+  function selectAmount(card) {
+    document.querySelectorAll('.amount-card').forEach(c=>c.classList.remove('selected'));
+    card.classList.add('selected');
+    sel.amount = parseInt(card.dataset.amount);
+    sel.price = parseInt(card.dataset.price);
+    updateSummary();
+  }
+  function selectNetwork(tab, net) {
+    document.querySelectorAll('.net-tab').forEach(t=>t.classList.remove('selected'));
+    tab.classList.add('selected');
+    sel.network = net;
+    document.getElementById('walletInput').placeholder = `Paste your ${net} wallet address`;
+    updateSummary();
+  }
+  function toggleDropdown() {
+    document.getElementById('durationTrigger').classList.toggle('open');
+    document.getElementById('durationList').classList.toggle('open');
+  }
+  function selectDuration(item) {
+    document.querySelectorAll('.dur-item').forEach(i => { i.classList.remove('selected'); const c=i.querySelector('.dur-check'); if(c)c.remove(); });
+    item.classList.add('selected');
+    const chk = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    chk.setAttribute('class','dur-check'); chk.setAttribute('viewBox','0 0 24 24'); chk.setAttribute('fill','none'); chk.setAttribute('stroke','currentColor'); chk.setAttribute('stroke-width','2.5'); chk.setAttribute('stroke-linecap','round'); chk.setAttribute('stroke-linejoin','round'); chk.innerHTML='<polyline points="20 6 9 17 4 12"/>';
+    item.appendChild(chk);
+    sel.duration = item.dataset.dur;
+    document.getElementById('durationLabel').textContent = sel.duration;
+    toggleDropdown(); updateSummary();
+  }
+  function updateSummary() {
+    const fmt = n => n>=1000000?(n/1000000)+'M':(n/1000)+'K';
+    document.getElementById('sumAmount').textContent = fmt(sel.amount)+' USDT';
+    document.getElementById('sumNetwork').textContent = sel.network;
+    document.getElementById('sumDuration').textContent = sel.duration;
+    document.getElementById('sumMarket').textContent = '$'+sel.amount.toLocaleString();
+    document.getElementById('sumTotal').textContent = '$'+sel.price;
+    const sav = sel.amount-sel.price;
+    document.getElementById('sumSavings').textContent = `✦ You save $${sav.toLocaleString()} (${((sav/sel.amount)*100).toFixed(1)}%)`;
+  }
+  async function pasteWallet() {
+    try { document.getElementById('walletInput').value = await navigator.clipboard.readText(); }
+    catch { document.getElementById('walletInput').focus(); }
+  }
+  function placeOrder(e) {
+    const wallet = document.getElementById('walletInput').value.trim();
+    if (!wallet) {
+      document.getElementById('walletInput').style.borderColor='#e84040';
+      document.getElementById('walletInput').placeholder='⚠ Enter your wallet address first';
+      setTimeout(()=>{ document.getElementById('walletInput').style.borderColor=''; document.getElementById('walletInput').placeholder=`Paste your ${sel.network} wallet address`; }, 2600);
+      return;
+    }
+    const btn = e.currentTarget;
+    const rip = document.createElement('span'); rip.classList.add('ripple-effect');
+    const r = btn.getBoundingClientRect(); rip.style.left=(e.clientX-r.left)+'px'; rip.style.top=(e.clientY-r.top)+'px';
+    btn.appendChild(rip); setTimeout(()=>rip.remove(),700);
+    const fmt = n=>n>=1000000?(n/1000000)+'M':(n/1000)+'K';
+    document.getElementById('amountDue').textContent='$'+sel.price;
+    document.getElementById('youReceive').textContent=fmt(sel.amount)+' USDT '+sel.network;
+    showStep('stepMethod');
+    document.getElementById('modal').classList.add('open');
+  }
+  function showStep(id) { document.querySelectorAll('.modal-step').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    showStep('stepMethod');
+    document.getElementById('walletInput').value='';
+    document.getElementById('qrCode').innerHTML='';
+  }
+  function backToMethods() { showStep('stepMethod'); document.getElementById('qrCode').innerHTML=''; }
+  function goToAddress(key) {
+    curMethod = key;
+    const m = ADDRESSES[key];
+    // Set icon with SVG
+    const icoEl = document.getElementById('addrIco');
+    icoEl.innerHTML = ICONS[key];
+    icoEl.className = 'pay-addr-ico ' + ICO_BG[key];
+    document.getElementById('addrName').textContent = m.name;
+    document.getElementById('addrSub').textContent = m.sub;
+    document.getElementById('addrVal').textContent = m.address;
+    document.getElementById('exactAmount').textContent = '$'+sel.price+' USD';
+    document.getElementById('instrAmt').textContent = '$'+sel.price;
+    document.getElementById('instrNet').textContent = m.network;
+    document.getElementById('qrCode').innerHTML='';
+    try {
+      new QRCode(document.getElementById('qrCode'),{ text:m.address, width:176, height:176, colorDark:'#000000', colorLight:'#ffffff', correctLevel:QRCode.CorrectLevel.M });
+    } catch(e) { document.getElementById('qrCode').innerHTML='<div style="width:176px;height:176px;display:flex;align-items:center;justify-content:center;color:#666;font-size:11px">QR unavailable</div>'; }
+    const cb=document.getElementById('copyBtn');
+    cb.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Address';
+    cb.classList.remove('copied');
+    showStep('stepAddress');
+  }
+  function copyAddress() {
+    const addr=ADDRESSES[curMethod].address;
+    const done=()=>{
+      const b=document.getElementById('copyBtn');
+      b.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+      b.classList.add('copied');
+      setTimeout(()=>{
+        b.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Address';
+        b.classList.remove('copied');
+      },2500);
+    };
+    navigator.clipboard.writeText(addr).then(done).catch(()=>{ const t=document.createElement('textarea'); t.value=addr; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); done(); });
+  }
+  function goToSuccess() {
+    const fmt=n=>n>=1000000?(n/1000000)+'M':(n/1000)+'K';
+    const wallet=document.getElementById('walletInput').value.trim();
+    const m=ADDRESSES[curMethod];
+    document.getElementById('successDetail').innerHTML=`
+      <div class="success-row"><span>You Receive</span><span>${fmt(sel.amount)} USDT</span></div>
+      <div class="success-row"><span>Delivery Network</span><span>${sel.network}</span></div>
+      <div class="success-row"><span>Paid Via</span><span>${m.name}</span></div>
+      <div class="success-row"><span>Duration</span><span>${sel.duration}</span></div>
+      <div class="success-row"><span>Your Wallet</span><span title="${wallet}">${wallet}</span></div>
+    `;
+    showStep('stepSuccess');
+  }
+  document.addEventListener('click', e=>{ const w=document.querySelector('.dropdown-wrap'); if(w&&!w.contains(e.target)){ document.getElementById('durationTrigger').classList.remove('open'); document.getElementById('durationList').classList.remove('open'); }});
+  document.getElementById('modal').addEventListener('click',function(e){ if(e.target===this)closeModal(); });
+</script>
+</body>
+</html>
