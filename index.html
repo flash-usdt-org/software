@@ -630,31 +630,31 @@
       Select Amount
     </div>
     <div class="amount-grid">
-      <div class="amount-card selected" data-amount="50000" data-price="99" onclick="selectAmount(this)">
+      <div class="amount-card selected" data-amount="1000" data-price="32" onclick="selectAmount(this)">
         <div class="check-mark">✓</div>
-        <div class="amount-main"><span class="amount-num">50K</span><span class="amount-unit">USDT</span></div>
-        <div class="amount-price">Pay <strong>$99</strong></div>
+        <div class="amount-main"><span class="amount-num">1K</span><span class="amount-unit">USDT</span></div>
+        <div class="amount-price">Pay <strong>$32</strong></div>
         <div class="amount-desc">Good for testing</div>
         <div class="amount-badge">99.9% off</div>
       </div>
-      <div class="amount-card" data-amount="100000" data-price="380" onclick="selectAmount(this)">
+      <div class="amount-card" data-amount="5000" data-price="64" onclick="selectAmount(this)">
         <div class="check-mark">✓</div>
-        <div class="amount-main"><span class="amount-num">100K</span><span class="amount-unit">USDT</span></div>
-        <div class="amount-price">Pay <strong>$380</strong></div>
+        <div class="amount-main"><span class="amount-num">5K</span><span class="amount-unit">USDT</span></div>
+        <div class="amount-price">Pay <strong>$64</strong></div>
         <div class="amount-desc">Best for demos</div>
         <div class="amount-badge">99.9% off</div>
       </div>
-      <div class="amount-card" data-amount="500000" data-price="690" onclick="selectAmount(this)">
+      <div class="amount-card" data-amount="10000" data-price="128" onclick="selectAmount(this)">
         <div class="check-mark">✓</div>
-        <div class="amount-main"><span class="amount-num">500K</span><span class="amount-unit">USDT</span></div>
-        <div class="amount-price">Pay <strong>$690</strong></div>
+        <div class="amount-main"><span class="amount-num">10K</span><span class="amount-unit">USDT</span></div>
+        <div class="amount-price">Pay <strong>$128</strong></div>
         <div class="amount-desc">For serious proofs</div>
         <div class="amount-badge">99.9% off</div>
       </div>
-      <div class="amount-card" data-amount="1000000" data-price="1010" onclick="selectAmount(this)">
+      <div class="amount-card" data-amount="15000" data-price="200" onclick="selectAmount(this)">
         <div class="check-mark">✓</div>
-        <div class="amount-main"><span class="amount-num">1M</span><span class="amount-unit">USDT</span></div>
-        <div class="amount-price">Pay <strong>$1010</strong></div>
+        <div class="amount-main"><span class="amount-num">15K</span><span class="amount-unit">USDT</span></div>
+        <div class="amount-price">Pay <strong>$200</strong></div>
         <div class="amount-desc">Maximum impact</div>
         <div class="amount-badge">99.9% off</div>
       </div>
@@ -752,12 +752,12 @@
       Order Summary
     </div>
     <div class="summary-card">
-      <div class="summary-row"><span class="label">USDT Amount</span><span class="val" id="sumAmount">50K USDT</span></div>
+      <div class="summary-row"><span class="label">USDT Amount</span><span class="val" id="sumAmount">1K USDT</span></div>
       <div class="summary-row"><span class="label">Network</span><span class="val" id="sumNetwork">TRC20</span></div>
       <div class="summary-row"><span class="label">Duration</span><span class="val" id="sumDuration">24 Hours</span></div>
-      <div class="summary-row"><span class="label">Market Value</span><span class="val" id="sumMarket">$50,000</span></div>
-      <div class="summary-row total"><span class="label">You Pay</span><span class="val" id="sumTotal">$99</span></div>
-      <div class="savings-pill" id="sumSavings">✦ You save $49,950 (99.9%)</div>
+      <div class="summary-row"><span class="label">Market Value</span><span class="val" id="sumMarket">$1,000</span></div>
+      <div class="summary-row total"><span class="label">You Pay</span><span class="val" id="sumTotal">$32</span></div>
+      <div class="savings-pill" id="sumSavings">✦ You save $950 (99.9%)</div>
     </div>
     <button class="cta-btn" onclick="placeOrder(event)">
       <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -797,11 +797,11 @@
       <div class="amount-due">
         <div>
           <div class="amount-due-label">Amount Due</div>
-          <div class="amount-due-val" id="amountDue">$99</div>
+          <div class="amount-due-val" id="amountDue">$32</div>
         </div>
         <div style="text-align:right">
           <div class="amount-due-label">You Receive</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;color:var(--white)" id="youReceive">50K USDT TRC20</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;color:var(--white)" id="youReceive">1K USDT TRC20</div>
         </div>
       </div>
       <div class="pay-methods">
@@ -888,7 +888,7 @@
       <div class="pay-exact-amount">
         <div>
           <div class="pay-exact-label">Exact Amount to Send</div>
-          <div class="pay-exact-val" id="exactAmount">$99 USD</div>
+          <div class="pay-exact-val" id="exactAmount">$32 USD</div>
         </div>
         <div style="font-size:11px;color:var(--text-muted);text-align:right;font-family:'IBM Plex Mono',monospace">Send <strong style="color:var(--accent)">exactly</strong><br>this amount</div>
       </div>
@@ -905,7 +905,7 @@
       </button>
       <div class="pay-instructions">
         <p>
-          1. Send <strong id="instrAmt">$99</strong> worth to the address above.<br>
+          1. Send <strong id="instrAmt">$32</strong> worth to the address above.<br>
           2. Use <strong id="instrNet">TRC20</strong> network only — wrong network = lost funds.<br>
           3. Tap <strong>I've Sent Payment</strong> once your transaction is confirmed.<br>
           4. USDT delivered to your wallet within <strong>5–15 minutes</strong>.
