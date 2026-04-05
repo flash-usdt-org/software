@@ -756,7 +756,7 @@
       <div class="summary-row"><span class="label">Network</span><span class="val" id="sumNetwork">TRC20</span></div>
       <div class="summary-row"><span class="label">Duration</span><span class="val" id="sumDuration">24 Hours</span></div>
       <div class="summary-row"><span class="label">Market Value</span><span class="val" id="sumMarket">$1,000</span></div>
-      <div class="summary-row total"><span class="label">You Pay</span><span class="val" id="sumTotal">$32</span></div>
+      <div class="summary-row total"><span class="label">You Pay</span><span class="val" id="sumTotal">$50</span></div>
       <div class="savings-pill" id="sumSavings">✦ You save $950 (99.9%)</div>
     </div>
     <button class="cta-btn" onclick="placeOrder(event)">
@@ -797,7 +797,7 @@
       <div class="amount-due">
         <div>
           <div class="amount-due-label">Amount Due</div>
-          <div class="amount-due-val" id="amountDue">$32</div>
+          <div class="amount-due-val" id="amountDue">$50</div>
         </div>
         <div style="text-align:right">
           <div class="amount-due-label">You Receive</div>
@@ -888,7 +888,7 @@
       <div class="pay-exact-amount">
         <div>
           <div class="pay-exact-label">Exact Amount to Send</div>
-          <div class="pay-exact-val" id="exactAmount">$32 USD</div>
+          <div class="pay-exact-val" id="exactAmount">$50 USD</div>
         </div>
         <div style="font-size:11px;color:var(--text-muted);text-align:right;font-family:'IBM Plex Mono',monospace">Send <strong style="color:var(--accent)">exactly</strong><br>this amount</div>
       </div>
@@ -949,7 +949,7 @@
     bep20: { name:'USDT BEP20', sub:'BNB Smart Chain', address:'0xd8670dc3f992d35b689bd26286c716c57f51ed45', network:'BEP20 (BSC)' }
   };
 
-  let sel = { amount:1000, price:32, network:'TRC20', duration:'24 Hours' };
+  let sel = { amount:1000, price:50, network:'TRC20', duration:'24 Hours' };
   let curMethod = null;
 
   function selectAmount(card) {
